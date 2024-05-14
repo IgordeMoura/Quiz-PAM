@@ -32,6 +32,34 @@ export default function Quiz(){
 
     // Função para Verificar se a Resposta Selecionada é a Correta
     const verificarResposta = (resposta) => {
-        
-    }
+        if (resposta === respostaCorreta){
+            Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+            carregarPergunta();
+        } else{
+            Alert.alert('Ops!', 'Resposta Incorreta.');
+        }
+    };
+
+    // Renderizando o Componente
+    return(
+        // Criando uma View com alinhamento Centralizado e Ocupando 90% da Tela
+        <View style={{alignItems: 'center', width: '90%', marginStart: 'auto', marginEnd: 'auto'}}>
+            {/* Renderizando o Logo */}
+            <Image source={requestAnimationFrame('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45, height: 150}}/>
+            {/* Renderizando a pergunta com estilo de multilinha e justificado */}
+            <Text style={{fontSize: 16, marginBottom: 5, textAlign: 'justify', width: '90%'}} multiline={true}>{pergunta}</Text>
+            {/* Renderizando as alternativas */}
+            {alternativas.map((alternativa, index) =>(
+                // Cada botão ocupa 90% da tela e tem uma margem inferior de 15px
+                <View style={{width:'90%', marginBottom: 15}}>
+                    <Button key={index} title={`${String.fromCharCode(65 + index)}. ${alternativa}`} onPress={()=>
+                    verificarResposta(String.fromCharCode(65 + index))} />
+                </View>
+            ))}
+            {/* Renderizando o Botão para carregar a próxima pergunta */}
+            <View style={{width: '90%', marginBottom: 15}}>
+                <Button title='Próxima Pergunta' onPress={carregarPergunta} />
+            </View>
+        </View>
+    );
 }
