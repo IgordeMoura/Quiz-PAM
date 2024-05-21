@@ -1,5 +1,5 @@
 // Importando os Módulos Necessarios
-import react, { useState} from "react"
+import React, { useState} from "react"
 import { Image, Button, TextInput, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
@@ -19,7 +19,7 @@ export default function Add() {
     // Criando a Tabela 'perguntas' se ela não existir no banco de dados
     db.transaction(tx => {
         tx.executeSql(
-            'CREATE TABLE IF NOT EXISTS perguntas (id INTEGER PRIMARY KEY AUTOINCREMENT, pergunta TEXT, alternativaA Text, alternativaB TEXT, alternativaC TEXT, alternativaD TEXT, resposta_correta TEXT);'
+            'CREATE TABLE IF NOT EXISTS perguntas (id INTEGER PRIMARY KEY AUTOINCREMENT, pergunta TEXT, alternativaA TEXT, alternativaB TEXT, alternativaC TEXT, alternativaD TEXT, resposta_correta TEXT);'
         );
     });
 
@@ -37,6 +37,7 @@ export default function Add() {
                 setRespostaCorreta('');
                 // Exibindo um alerta de sucesso
                 Alert.alert('Sucesso', 'Pergunta adicionada com Sucesso!');
+                console.log(adicionarPergunta);
             });
         });
     };
@@ -44,7 +45,7 @@ export default function Add() {
     return(
         <View style={{alignItens: 'center'}}>
             {/* Renderizando Logo */}
-            <Image source={require('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/>
+            {/* <Image source={require('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/> */}
             {/* Renderizando os campos de Texto com a borda e o espaçamento especificados */}
             <TextInput placeholder='Digite a Pergunta' value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
             style={{height:80, borderColor: 'blue', borderWidth:1, marginBottom:15, width:'90%'}}/>
@@ -54,7 +55,7 @@ export default function Add() {
             <TextInput placeholder='Digite a Alternativa D' value={alternativaD} onChangeText={setAlternativaD} style={{borderColor: 'blue', borderWidth:1, marginBottom:5, width:'90%', height: 50}}/>
             <TextInput placeholder='Digite a Resposta Correta' value={respostaCorreta} onChangeText={setRespostaCorreta} style={{borderColor: 'blue', borderWidth:1, marginBottom:5, width:'90%', height: 50}}/>
             {/* Renderizando o Botão para adicionar uma Pergunta */}
-            <Button tittle='Adicionar Pergunta' onPress={adicionarPergunta}/>
+            <Button title='Adicionar Pergunta' onPress={adicionarPergunta}/>
         </View>
     );
 }

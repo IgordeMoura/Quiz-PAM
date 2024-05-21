@@ -4,7 +4,7 @@ import {Image, Button, Text, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
 // Abrindo o banco de dados SQLite
-const db = SQLite.openDataBase('quiz.db');
+const db = SQLite.openDatabase('quiz.db');
 
 // Definindo o Componente Quiz
 export default function Quiz(){
@@ -13,22 +13,24 @@ export default function Quiz(){
     const [alternativas, setAlternativas] = useState([]);
     const [respostaCorreta, setRespostaCorreta] = useState('');
 
-    // Carregando uma pergunta aleatoria quando o componente é montado
-    useEffect(() => {
-        carregarPergunta();
-    }, []);
-
+    
     // Função para carregar uma pergunta aleatoria do banco de dados
     const carregarPergunta = () => {
         db.transaction(tx => {
             tx.executeSql('SELECT * FROM perguntas ORDER BY RANDOM() LIMIT 1;', [], (_, { rows }) => {
-                let pergunta = rows.array[0];
+                let pergunta = rows._array[0];
                 setPergunta(pergunta.pergunta);
                 setRespostaCorreta(pergunta.resposta_correta);
                 setAlternativas([pergunta.alternativaA, pergunta.alternativaB, pergunta.alternativaC, pergunta.alternativaD]);
             });
         });
     };
+
+    // Carregando uma pergunta aleatoria quando o componente é montado
+    useEffect(() => {
+        carregarPergunta();
+    }, []);
+    
 
     // Função para Verificar se a Resposta Selecionada é a Correta
     const verificarResposta = (resposta) => {
@@ -45,7 +47,7 @@ export default function Quiz(){
         // Criando uma View com alinhamento Centralizado e Ocupando 90% da Tela
         <View style={{alignItems: 'center', width: '90%', marginStart: 'auto', marginEnd: 'auto'}}>
             {/* Renderizando o Logo */}
-            <Image source={requestAnimationFrame('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45, height: 150}}/>
+            {/* <Image source={requestAnimationFrame('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45, height: 150}}/> */}
             {/* Renderizando a pergunta com estilo de multilinha e justificado */}
             <Text style={{fontSize: 16, marginBottom: 5, textAlign: 'justify', width: '90%'}} multiline={true}>{pergunta}</Text>
             {/* Renderizando as alternativas */}

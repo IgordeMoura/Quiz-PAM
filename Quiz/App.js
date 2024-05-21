@@ -6,11 +6,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 // importando os componentes das diferentes telas
 import Home from './Components/Home';
 import Add from './Components/Add';
-// import Quiz from './Components/Quiz';
-// import Edit from './Components/Edit';
+import Quiz from './Components/Quiz';
+import Edit from './Components/Edit';
 
 // Criando o objeto stack para a navegação entre telas
-const stack = createStackNavigator();
+const Stack = createStackNavigator();
 
 //Definindo o Componente principal do app
 export default function app() {
@@ -22,8 +22,8 @@ export default function app() {
         {/* Defininido as Diferentes Telas que Podem Ser Navegadas */}
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Add" component={Add}/>
-        {/* <Stack.Screen name="Quiz" component={Quiz}/>
-        <Stack.Screen name="Edit" component={Edit}/> */}
+        <Stack.Screen name="Quiz" component={Quiz}/>
+        <Stack.Screen name="Edit" component={Edit}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -9,20 +9,20 @@ export default function Home({ navigation }) {
         <View style={{alignItems: 'center'}}>
 
             {/* Renderizando a Imagem do Logo */}
-            <Image source={require('../assets/Logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/>
+            {/* <Image source={require('../assets/Logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/> */}
 
             {/* Criando um botão para navegar para a tela de adicionar pergunta */}
             <View style={{marginBottom: 15}}>
-                <Button tittle='Adicionar Pergunta' onPress={()=> navigation.navigate('Add')}/>
+                <Button title='Adicionar Pergunta' onPress={()=> navigation.navigate('Add')}/>
             </View>
 
             {/* Criando um Botão para Navegar para a tela inicial do quiz */}
             <View style={{marginBottom: 15}}>
-                <Button tittle='Iniciar Quiz' onPress={()=> navigation.navigate('Quiz')} color={'green'}/>
+                <Button title='Iniciar Quiz' onPress={()=> navigation.navigate('Quiz')} color={'green'}/>
             </View>
 
             {/* Criando um Botão para navegar para a tela de editar perguntas */}
-            <Button tittle='Editar Perguntas' onPress={()=> navigation.navigate('Edit')} color={'gold'}/>
+            <Button title='Editar Perguntas' onPress={()=> navigation.navigate('Edit')} color={'gold'}/>
         </View>
     );
 }

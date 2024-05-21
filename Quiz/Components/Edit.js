@@ -100,7 +100,7 @@ export default function Edit() {
     return(
         <View style={{alignItems: 'center'}}>
             {/* Renderizando o Logo */}
-            <Image source={require('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/>
+            {/* <Image source={require('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/> */}
             {/* Renderizando os campos de texto com a borda e o espaçamento especifico */}
             <TextInput placeholder="Digite a Pergunta" value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
             style={{height: 80, borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
@@ -111,9 +111,9 @@ export default function Edit() {
             <TextInput placeholder="Digite a Letra da Resposta Correta" value={respostaCorreta} onChangeText={setRespostaCorreta} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
             {/* Renderizando os Botões para atualizar e deletar a pergunta */}
             <View style={{marginBottom: 15}}>
-                <Button tittle='atualizar pergunta' onPress={atualizarPergunta} style={{marginBottom: 5}}/>
+                <Button title='atualizar pergunta' onPress={atualizarPergunta} style={{marginBottom: 5}}/>
             </View>
-            <Button tittle='Deletar Pergunta' onPress={deletarPergunta} color={'red'} style={{marginBottom: 5}}/>
+            <Button title='Deletar Pergunta' onPress={deletarPergunta} color={'red'} style={{marginBottom: 5}}/>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '90%'}}>
                 <Button title='Voltar' onPress={perguntaAnterior}/>
                 <Button title='Avançar' onPress={proximaPergunta}/>
