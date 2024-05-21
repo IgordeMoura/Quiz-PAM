@@ -17,15 +17,11 @@ export default function Edit() {
     const [alternativaD, setAlternativaD] = useState('');
     const [respostaCorreta, setRespostaCorreta] = useState('');
 
-    // Carregando a Primeira Pergunta Quando o Componente é Montado
-    useEffect(() => {
-        carregarPergunta();
-    }, []);
-
+    
     // Função para carregar a primeira pergunta do banco de dados
     const carregarPergunta = () => {
         db.transaction(tx => {
-            tx.executeSql('SELECT ( FROM perguntas ORDER BY id LIMIT 1;', [], (_, { rows }) => {
+            tx.executeSql('SELECT * FROM perguntas ORDER BY id LIMIT 1;', [], (_, { rows }) => {
                 let pergunta = rows._array [0];
                 setId(pergunta.id);
                 setPergunta(pergunta.pergunta);
@@ -37,11 +33,16 @@ export default function Edit() {
             });
         });
     };
+    
+    // Carregando a Primeira Pergunta Quando o Componente é Montado
+    useEffect(() => {
+        carregarPergunta();
+    }, []);
 
     // Função para atualizar a pergunta atual no banco de dados
     const atualizarPergunta = () => {
         db.transaction(tx => {
-            tx.executeSql('UPDATE perguntas SET perguntas = ?, alternativaA = ?, alternativaB = ?, alternativaC = ?, alternativaD = ?, resposta_correta = ?, WHERE id = ?;', [pergunta, alternativaA, alternativaB, alternativaC, alternativaD, respostaCorreta, id], () => {
+            tx.executeSql('UPDATE perguntas SET pergunta = ?, alternativaA = ?, alternativaB = ?, alternativaC = ?, alternativaD = ?, resposta_correta = ?, WHERE id = ?;', [pergunta, alternativaA, alternativaB, alternativaC, alternativaD, respostaCorreta, id], () => {
                 Alert.alert('Sucesso!', 'Pergunta atualizada com sucesso!');
             });
         });
