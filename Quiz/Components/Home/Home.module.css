@@ -1,0 +1,15 @@
+.container{
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.botoes{
+    margin-bottom: 15;
+}
+
+.logo {
+    width: 90%;
+    height: 150;
+    margin-bottom: 45;
+}

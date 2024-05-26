@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Image, Button, TextInput, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
+import logo from '../../assets/logo.jpg';
+import Style from './Edit.module.css';
 
 //  Abrindo o banco de dados SQLite
 const db = SQLite.openDatabase('quiz.db');
@@ -99,23 +101,23 @@ export default function Edit() {
     };
     
     return(
-        <View style={{alignItems: 'center'}}>
+        <View style={Style.container}>
             {/* Renderizando o Logo */}
-            {/* <Image source={require('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45}}/> */}
+            <Image source={require(logo)} style={Style.logo}/>
             {/* Renderizando os campos de texto com a borda e o espaçamento especifico */}
             <TextInput placeholder="Digite a Pergunta" value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
-            style={{height: 80, borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
-            <TextInput placeholder="Digite a Alternativa A" value={alternativaA} onChangeText={setAlternativaA} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
-            <TextInput placeholder="Digite a Alternativa B" value={alternativaB} onChangeText={setAlternativaB} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
-            <TextInput placeholder="Digite a Alternativa C" value={alternativaC} onChangeText={setAlternativaC} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
-            <TextInput placeholder="Digite a Alternativa D" value={alternativaD} onChangeText={setAlternativaD} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
-            <TextInput placeholder="Digite a Letra da Resposta Correta" value={respostaCorreta} onChangeText={setRespostaCorreta} style={{borderColor:'blue', borderWidth: 1, marginBottom: 5, width: '90%'}}/>
+            style={Style.input}/>
+            <TextInput placeholder="Digite a Alternativa A" value={alternativaA} onChangeText={setAlternativaA} style={Style.input}/>
+            <TextInput placeholder="Digite a Alternativa B" value={alternativaB} onChangeText={setAlternativaB} style={Style.input}/>
+            <TextInput placeholder="Digite a Alternativa C" value={alternativaC} onChangeText={setAlternativaC} style={Style.input}/>
+            <TextInput placeholder="Digite a Alternativa D" value={alternativaD} onChangeText={setAlternativaD} style={Style.input}/>
+            <TextInput placeholder="Digite a Letra da Resposta Correta" value={respostaCorreta} onChangeText={setRespostaCorreta} style={Style.input}/>
             {/* Renderizando os Botões para atualizar e deletar a pergunta */}
             <View style={{marginBottom: 15}}>
-                <Button title='atualizar pergunta' onPress={atualizarPergunta} style={{marginBottom: 5}}/>
+                <Button title='atualizar pergunta' onPress={atualizarPergunta} style={Style.botoes}/>
             </View>
-            <Button title='Deletar Pergunta' onPress={deletarPergunta} color={'red'} style={{marginBottom: 5}}/>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '90%'}}>
+            <Button title='Deletar Pergunta' onPress={deletarPergunta} color={'red'} style={Style.botoes}/>
+            <View style={Style.vwbotoes}>
                 <Button title='Voltar' onPress={perguntaAnterior}/>
                 <Button title='Avançar' onPress={proximaPergunta}/>
             </View>

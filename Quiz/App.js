@@ -4,10 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // importando os componentes das diferentes telas
-import Home from './Components/Home';
-import Add from './Components/Add';
-import Quiz from './Components/Quiz';
-import Edit from './Components/Edit';
+import Home from './Components/Home/Home';
+import Add from './Components/Add/Add';
+import Quiz from './Components/Quiz/Quiz';
+import Edit from './Components/Edit/Edit';
 
 // Criando o objeto stack para a navegação entre telas
 const Stack = createStackNavigator();

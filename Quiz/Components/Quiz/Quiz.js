@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from "react";
 import {Image, Button, Text, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
+import logo from '../../assets/logo.jpg';
+import Style from './Quiz.module.css';
 
 // Abrindo o banco de dados SQLite
 const db = SQLite.openDatabase('quiz.db');
+let pontos = 0;
 
 // Definindo o Componente Quiz
 export default function Quiz(){
@@ -12,6 +15,7 @@ export default function Quiz(){
     const [pergunta, setPergunta] = useState('');
     const [alternativas, setAlternativas] = useState([]);
     const [respostaCorreta, setRespostaCorreta] = useState('');
+    const [status, setStatus] = useState('');
 
     
     // Função para carregar uma pergunta aleatoria do banco de dados
@@ -35,31 +39,64 @@ export default function Quiz(){
     // Função para Verificar se a Resposta Selecionada é a Correta
     const verificarResposta = (resposta) => {
         if (resposta === respostaCorreta){
-            Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
-            carregarPergunta();
+            pontos = pontos + 1;
+            if (pontos <= 2){
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Você é um Noob Neste Assunto');
+                carregarPergunta();
+            }
+            else if (pontos > 2 && pontos <= 4){
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Seu Conhecimento é Básico');
+                carregarPergunta();
+            }
+            else if (pontos > 4 && pontos <= 6){
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Você Tem um Certo Conhecimento do Assunto');
+                carregarPergunta();
+            }
+            else if (pontos > 6 && pontos <= 8){
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Você Tem Um Certo Conhecimento do Assunto');
+                carregarPergunta();
+            }
+            else if (pontos > 6 && pontos <= 8){
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Você Tem Um Bom Conhecimento do Assunto');
+                carregarPergunta();
+            }
+            else{
+                Alert.alert('Parabéns!', 'Você Acertou a Resposta!');
+                setStatus('Você é Um Experto no Assunto');
+                carregarPergunta();
+            }
         } else{
             Alert.alert('Ops!', 'Resposta Incorreta.');
+            setStatus('Você é um Noob Neste Assunto');
+            pontos = 0;
         }
     };
 
     // Renderizando o Componente
     return(
         // Criando uma View com alinhamento Centralizado e Ocupando 90% da Tela
-        <View style={{alignItems: 'center', width: '90%', marginStart: 'auto', marginEnd: 'auto'}}>
+        <View style={Style.container}>
             {/* Renderizando o Logo */}
-            {/* <Image source={requestAnimationFrame('../assets/logo.png')} style={{width: '90%', height: 150, marginBottom: 45, height: 150}}/> */}
+            <Image source={require(logo)} style={Style.logo}/>
+            <label>{pontos}</label>
+            <label>{status}</label>
             {/* Renderizando a pergunta com estilo de multilinha e justificado */}
-            <Text style={{fontSize: 16, marginBottom: 5, textAlign: 'justify', width: '90%'}} multiline={true}>{pergunta}</Text>
+            <Text style={Style.texto} multiline={true}>{pergunta}</Text>
             {/* Renderizando as alternativas */}
             {alternativas.map((alternativa, index) =>(
                 // Cada botão ocupa 90% da tela e tem uma margem inferior de 15px
-                <View style={{width:'90%', marginBottom: 15}}>
+                <View style={Style.botoes}>
                     <Button key={index} title={`${String.fromCharCode(65 + index)}. ${alternativa}`} onPress={()=>
                     verificarResposta(String.fromCharCode(65 + index))} />
                 </View>
             ))}
             {/* Renderizando o Botão para carregar a próxima pergunta */}
-            <View style={{width: '90%', marginBottom: 15}}>
+            <View style={Style.botoes}>
                 <Button title='Próxima Pergunta' onPress={carregarPergunta} />
             </View>
         </View>

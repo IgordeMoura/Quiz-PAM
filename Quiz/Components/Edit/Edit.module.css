@@ -1,0 +1,27 @@
+.container{
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.input {
+    height: 80;
+    width: 90%;
+    border: 1 solid blue;
+    margin-bottom:5;
+}
+
+.vwbotoes{
+    flex-direction: 'row';
+    justify-content: 'space-between';
+    width: 90%
+}
+.botoes{
+    margin-bottom: 5;
+}
+
+.logo {
+    width: 90%;
+    height: 150;
+    margin-bottom: 45;
+}
