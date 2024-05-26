@@ -47,7 +47,7 @@ export default function Add() {
     return(
         <View style={Style.container}>
             {/* Renderizando Logo */}
-            <Image source={require(logo)} style={Style.logo}/>
+            {/* <Image source={(logo)} style={Style.logo}/> */}
             {/* Renderizando os campos de Texto com a borda e o espaçamento especificados */}
             <TextInput placeholder='Digite a Pergunta' value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
             style={Style.input}/>

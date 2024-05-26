@@ -82,9 +82,9 @@ export default function Quiz(){
         // Criando uma View com alinhamento Centralizado e Ocupando 90% da Tela
         <View style={Style.container}>
             {/* Renderizando o Logo */}
-            <Image source={require(logo)} style={Style.logo}/>
-            <label>{pontos}</label>
-            <label>{status}</label>
+            {/* <Image source={(logo)} style={Style.logo}/> */}
+            <Text>{pontos}</Text>
+            <Text>{status}</Text>
             {/* Renderizando a pergunta com estilo de multilinha e justificado */}
             <Text style={Style.texto} multiline={true}>{pergunta}</Text>
             {/* Renderizando as alternativas */}
