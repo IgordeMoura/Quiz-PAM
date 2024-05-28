@@ -3,7 +3,7 @@ import React, { useState} from "react"
 import { Image, Button, TextInput, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import logo from '../../assets/logo.jpg';
-import Style from './Add.module.css';
+import Style from './AddStyle';
 
 // abrindo o banco de dados SQLite
 const db = SQLite.openDatabase('quiz.db');
@@ -47,18 +47,20 @@ export default function Add() {
     return(
         <View style={Style.container}>
             {/* Renderizando Logo */}
-            {/* <Image source={(logo)} style={Style.logo}/> */}
+            <Image source={(logo)} style={Style.logo}/>
             {/* Renderizando os campos de Texto com a borda e o espaçamento especificados */}
-            <TextInput placeholder='Digite a Pergunta' value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
-            style={Style.input}/>
-            <TextInput placeholder='Digite a Alternativa A' value={alternativaA} onChangeText={setAlternativaA} style={Style.input2}/>
-            <TextInput placeholder='Digite a Alternativa B' value={alternativaB} onChangeText={setAlternativaB} style={Style.input2}/>
-            <TextInput placeholder='Digite a Alternativa C' value={alternativaC} onChangeText={setAlternativaC} style={Style.input2}/>
-            <TextInput placeholder='Digite a Alternativa D' value={alternativaD} onChangeText={setAlternativaD} style={Style.input2}/>
-            <TextInput placeholder='Digite a Resposta Correta' value={respostaCorreta} onChangeText={setRespostaCorreta} style={Style.input2}/>
-            
-            {/* Renderizando o Botão para adicionar uma Pergunta */}
-            <Button title='Adicionar Pergunta' onPress={adicionarPergunta}/>
+            <View style={Style.conteudo}>
+                <TextInput placeholder='Digite a Pergunta' value={pergunta} multiline={true} onChangeText={setPergunta} numberOfLines={4}
+                style={Style.input}/>
+                <TextInput placeholder='Digite a Alternativa A' value={alternativaA} onChangeText={setAlternativaA} style={Style.input}/>
+                <TextInput placeholder='Digite a Alternativa B' value={alternativaB} onChangeText={setAlternativaB} style={Style.input}/>
+                <TextInput placeholder='Digite a Alternativa C' value={alternativaC} onChangeText={setAlternativaC} style={Style.input}/>
+                <TextInput placeholder='Digite a Alternativa D' value={alternativaD} onChangeText={setAlternativaD} style={Style.input}/>
+                <TextInput placeholder='Digite a Resposta Correta' value={respostaCorreta} onChangeText={setRespostaCorreta} style={Style.input}/>
+                
+                {/* Renderizando o Botão para adicionar uma Pergunta */}
+                <Button title='Adicionar Pergunta' onPress={adicionarPergunta} color={'red'}/>
+            </View>
         </View>
     );
 }

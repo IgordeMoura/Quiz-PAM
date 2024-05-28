@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import {Image, Button, Text, View, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import logo from '../../assets/logo.jpg';
-import Style from './Quiz.module.css';
+import Style from './QuizStyle';
 
 // Abrindo o banco de dados SQLite
 const db = SQLite.openDatabase('quiz.db');
@@ -82,23 +82,27 @@ export default function Quiz(){
         // Criando uma View com alinhamento Centralizado e Ocupando 90% da Tela
         <View style={Style.container}>
             {/* Renderizando o Logo */}
-            {/* <Image source={(logo)} style={Style.logo}/> */}
-            <Text>{pontos}</Text>
-            <Text>{status}</Text>
-            {/* Renderizando a pergunta com estilo de multilinha e justificado */}
-            <Text style={Style.texto} multiline={true}>{pergunta}</Text>
-            {/* Renderizando as alternativas */}
-            {alternativas.map((alternativa, index) =>(
-                // Cada botão ocupa 90% da tela e tem uma margem inferior de 15px
-                <View style={Style.botoes}>
-                    <Button key={index} title={`${String.fromCharCode(65 + index)}. ${alternativa}`} onPress={()=>
-                    verificarResposta(String.fromCharCode(65 + index))} />
-                </View>
-            ))}
-            {/* Renderizando o Botão para carregar a próxima pergunta */}
-            <View style={Style.botoes}>
-                <Button title='Próxima Pergunta' onPress={carregarPergunta} />
+            <Image source={(logo)} style={Style.logo}/>
+            <View style={Style.centralizando}>
+                <Text>Seus Ponto: {pontos}</Text>
+                <Text>{status}</Text>
             </View>
+            <View style={Style.conteudo}>
+                {/* Renderizando a pergunta com estilo de multilinha e justificado */}
+                <Text style={Style.texto} multiline={true}>{pergunta}</Text>
+                    {/* Renderizando as alternativas */}
+                    {alternativas.map((alternativa, index) =>(
+                        // Cada botão ocupa 90% da tela e tem uma margem inferior de 15px
+                        <View style={Style.vwBotoes}>
+                            <Button color={'#fcaf42'} key={index} title={`${String.fromCharCode(65 + index)}. ${alternativa}`} onPress={()=>
+                            verificarResposta(String.fromCharCode(65 + index))} />
+                        </View>))}
+            </View>
+            {/* Renderizando o Botão para carregar a próxima pergunta */}
+            <View style={Style.vwBotoes2}>
+                <Button color={'#4cb573'} title='Próxima Pergunta' onPress={carregarPergunta} />
+            </View>
+        
         </View>
     );
 }
